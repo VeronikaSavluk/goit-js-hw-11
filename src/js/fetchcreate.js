@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const API_KEY = '29243561-87a2e79440d45d601d88db8bd';
 const BASE_URL = `https://pixabay.com/api/?key=${API_KEY}`;
-const PER_PAGE = 40;
+export const PER_PAGE = 40;
 const parameters = {
         image_type: "photo",
         orientation: "horizontal",
@@ -17,7 +17,7 @@ async function getPromise(URL) {
     console.error(error);
   }
 }
-export default class RequestAPI {
+export class RequestAPI {
 constructor() {
     this.searchQueryURL = "";
     this.page = 1;

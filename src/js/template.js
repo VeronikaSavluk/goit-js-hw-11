@@ -1,10 +1,11 @@
 import simpleLightbox from "simplelightbox";
-import data from "./fetchcreate";
+
+import "simplelightbox/dist/simple-lightbox.min.css";
 
 export const photoGallery = document.querySelector(".gallery");
 export let gallery = new SimpleLightbox(".gallery a");
-export function renderPhotoGallery(data) {
-    const newGallery = data.map(hit => `<div class="photo-card">
+export function renderPhotoGallery(hits) {
+    const newGallery = hits.map(hit => `<div class="photo-card">
   <a href="${hit.largeImageURL}"><img src="${hit.webformatURL}" alt="${hit.tags}" loading="lazy" /></a>
   <div class="info">
     <p class="info-item">

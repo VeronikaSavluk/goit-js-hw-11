@@ -1,17 +1,17 @@
 import Notiflix from "notiflix";
 import { requestAPI } from "../index";
-import { PER_PAGE } from "./fetchcreate";
+import { refs } from "./constants";
 import { renderPhotoGallery } from "./template";
 import { onWindowsScroll } from "./windowscroll";
 
-export const reloadBtn = document.querySelector(".load-more");
-reloadBtn.style.display = "none";
-reloadBtn.addEventListener("click", onreloadPageBtn);
+refs.reloadBtn.style.display = "none";
+refs.reloadBtn.addEventListener("click", onreloadPageBtn);
 export function onreloadPageBtn(e) {
   requestAPI.fetchArticle().then(({ hits }) => {
-      if (hits.length < PER_PAGE) {
+    console.log(hits);
+      if (hits.length < refs.PER_PAGE) {
       Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.");
-      reloadBtn.style.display = "none";
+      refs.reloadBtn.style.display = "none";
     };
     renderPhotoGallery(hits);
     onWindowsScroll();

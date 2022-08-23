@@ -1,8 +1,8 @@
 import simpleLightbox from "simplelightbox";
 
 import "simplelightbox/dist/simple-lightbox.min.css";
+import { refs } from "./constants";
 
-export const photoGallery = document.querySelector(".gallery");
 export let gallery = new SimpleLightbox(".gallery a");
 export function renderPhotoGallery(hits) {
     const newGallery = hits.map(hit => `<div class="photo-card">
@@ -22,6 +22,6 @@ export function renderPhotoGallery(hits) {
     </p>
   </div>
 </div>`).join(" ");
-  photoGallery.insertAdjacentHTML("beforeend", `${newGallery}`);
+  refs.photoGallery.insertAdjacentHTML("beforeend", `${newGallery}`);
   gallery.refresh();
 };

@@ -1,25 +1,28 @@
 import Notiflix from 'notiflix';
 
-import { RequestAPI, PER_PAGE } from './js/fetchcreate';
-import { photoGallery, renderPhotoGallery } from './js/template';
-import { reloadBtn } from './js/reloadbtn';
-import { onWindowsScroll } from './js/windowscroll';
+import { refs } from "./js/constants";
+import { RequestAPI } from './js/fetchcreate';
+import { renderPhotoGallery } from './js/template';
+import { reloadBtn } from './js/reloadbtn';// for load more button
+// import { onWindowScroll } from './js/windowscroll';
 
 export const requestAPI = new RequestAPI();
-const formEl = document.querySelector("#search-form");
 
-formEl.addEventListener("submit", onSearchBtnSubmit);
+refs.reloadBtn.style.display = "none";
+
+refs.formEl.addEventListener("submit", onSearchBtnSubmit);
 
 function onSearchBtnSubmit(e) {
   e.preventDefault();
-  photoGallery.innerHTML = "";
+  refs.photoGallery.innerHTML = "";
 
   requestAPI.queryURL = e.target.elements.searchQuery.value.trim().split(" ").join("+");
   requestAPI.resetPage();
-  requestAPI.fetchArticle().then(({ totalHits, hits }) => {
-    if (totalHits > PER_PAGE) {
-      reloadBtn.style.display = "block";
-    };
+  requestAPI.fetchArticle().then(({ hits, totalHits }) => {
+    // ==========for reloadBtn===============
+    // if (totalHits > refs.PER_PAGE) {
+    //   refs.reloadBtn.style.display = "block";
+    // };
     if (hits.length >= 1 && requestAPI.queryURL !== "") {
       Notiflix.Notify.info(`Hooray! We found ${totalHits} images.`);
       renderPhotoGallery(hits);
@@ -29,7 +32,6 @@ function onSearchBtnSubmit(e) {
       }
   }).catch(error => console.log(error));
 }
-
 
 // // const searchBtn = document.querySelector("#search-form button");
 // // console.log(searchBtn);

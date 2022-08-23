@@ -9,9 +9,9 @@ constructor() {
 
 fetchArticle() {
     let URL = `${BASE_URL}&q=${this.searchQueryURL}&${encodeURIComponent}&per_page=${refs.PER_PAGE}&page=${this.page}`;
-    return getPromise(URL).then(response => {
+    return getPromise(URL).then(data => {
     this.page += 1;
-        return response.data;
+        return data;
     });
 
 }

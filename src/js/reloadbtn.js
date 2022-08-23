@@ -8,7 +8,6 @@ refs.reloadBtn.style.display = "none";
 refs.reloadBtn.addEventListener("click", onreloadPageBtn);
 export function onreloadPageBtn(e) {
   requestAPI.fetchArticle().then(({ hits }) => {
-    console.log(hits);
       if (hits.length < refs.PER_PAGE) {
       Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.");
       refs.reloadBtn.style.display = "none";

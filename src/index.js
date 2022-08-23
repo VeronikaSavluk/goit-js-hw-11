@@ -6,6 +6,7 @@ import { renderPhotoGallery } from './js/template';
 // import { reloadBtn } from './js/reloadbtn';// for load more button
 import { onWindowScroll } from './js/windowscroll';
 import { onWindowScrollreload } from './js/windowscrollreload';// for load scroll
+
 export const requestAPI = new RequestAPI();
 
 refs.reloadBtn.style.display = "none";
@@ -21,10 +22,11 @@ function onSearchBtnSubmit(e) {
   requestAPI.queryURL = e.target.elements.searchQuery.value.trim().split(" ").join("+");
   requestAPI.resetPage();
   requestAPI.fetchArticle().then(({ hits, totalHits }) => {
-    // ==========for reloadBtn===============
+    // //=============for reloadBtn===============//
     // if (totalHits > refs.PER_PAGE) {
     //   refs.reloadBtn.style.display = "block";
     // };
+    // //=========================================//
     if (hits.length >= 1 && requestAPI.queryURL !== "") {
       Notiflix.Notify.info(`Hooray! We found ${totalHits} images.`);
       renderPhotoGallery(hits);

@@ -2,7 +2,6 @@ import Notiflix from "notiflix";
 import { requestAPI } from "../index";
 import { refs } from "./constants";
 import { renderPhotoGallery } from "./template";
-import { onWindowScroll } from "./windowscroll";
 
 refs.reloadBtn.style.display = "none";
 refs.reloadBtn.addEventListener("click", onreloadPageBtn);
@@ -13,6 +12,5 @@ export function onreloadPageBtn(e) {
       refs.reloadBtn.style.display = "none";
     };
     renderPhotoGallery(hits);
-    onWindowsScroll();
   }).catch(error => console.log(error));
 }

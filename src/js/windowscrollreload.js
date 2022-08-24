@@ -4,6 +4,7 @@ import throttle from 'lodash.throttle';
 import { refs } from "./constants";
 import { requestAPI } from '../index';
 import { renderPhotoGallery } from "./template";
+import { onWindowScroll } from './windowscroll';
 
 export function onWindowScrollreload(e) {
     if (!refs.photoGallery.classList.toggle("is-block") && window.scrollY + window.innerHeight >=
@@ -12,7 +13,7 @@ export function onWindowScrollreload(e) {
         if (hits.length > 0) {
           renderPhotoGallery(hits);
           if (hits.length < refs.PER_PAGE) {
-            refs.photoGallery.classList.toggle("is-block");
+            refs.photoGallery.classList.add("is-block");
             Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.")
           };
         }

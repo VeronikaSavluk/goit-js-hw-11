@@ -1,7 +1,9 @@
 import Notiflix from "notiflix";
+
 import { requestAPI } from "../index";
 import { refs } from "./constants";
 import { renderPhotoGallery } from "./template";
+import { onWindowScroll } from "./windowscroll";
 
 refs.reloadBtn.style.display = "none";
 refs.reloadBtn.addEventListener("click", onreloadPageBtn);
